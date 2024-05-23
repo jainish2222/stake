@@ -54,7 +54,7 @@ function changecolor(e,value){
   </div>
   <div className="bg-gray-800 p-4 rounded-lg w-72">
       <div className="flex justify-between mb-4">
-        <h2 className="text-gray-400 text-xl">< className="flex">
+        <h2 className="text-gray-400 text-xl">
         <div className="font-bold text-lg">
             Your balance
         </div>
