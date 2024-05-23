@@ -14,7 +14,7 @@ const GridComponent = () => {
   }, [numBombs]);
 
   const fetchGrid = async () => {
-    const response = await axios.get(`http://localhost:3000/generate-array/?name=${numBombs}`)
+    const response = await axios.get(`https://stake-lo8m.onrender.com/generate-array/?name=${numBombs}`)
       setGrid(response.data)
   };
  
