@@ -1,25 +1,17 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-
+import { useState,useContext } from 'react';
+// import axios from 'axios';
+import { ResContext } from '../hooks/ResContext';
+import {BalContext} from '../hooks/BalContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// import { useNavigate } from "react-router-dom"
 const GridComponent = () => {
-  const [grid, setGrid] = useState([]);
-  const [numBombs, setNumBombs] = useState(3);
-//   const arr= Array(25).fill(false)
   const [count,setcount]= useState(0);
-  useEffect(() => {
-    const ab = fetchGrid();
-    console.log(ab)
-  }, [numBombs]);
+ const {grid}=useContext(ResContext)
+ const {setCount,bet,setbet}=useContext(BalContext)
+//  const navigate = useNavigate();
 
-  const fetchGrid = async () => {
-    const response = await axios.get(`https://stake-lo8m.onrender.com/generate-array/?name=${numBombs}`)
-      setGrid(response.data)
-  };
- 
-
-
+ // use for test
 //   const renderCellContent = (content) => {
 //     console.log(content)
 //     if (content) {
@@ -29,41 +21,55 @@ const GridComponent = () => {
 //         return <div  className={`${click ? 'visible' : 'invisible'} bg-red-600 min-h-[90px] p-2 rounded-md`}>bomb</div>
 //     }
 //   };
-function changecolor(e,value){
-{
-    console.log(e.target.className)
-    e.target.className=`${value ? 'bg-green-600 min-h-[90px] p-2 rounded-md' : 'bg-red-600 min-h-[90px] p-2 rounded-md'}`
-    setcount(count+1);
-    if(!value)
-        {
-            alert("game is over! and you lose money")
-            location.reload()
-        }
-}
+
+function changecolor(e,value,bet){
+  if(bet)
+    {
+      console.log(e.target.className)
+      e.target.className=`${value ? 'bg-green-600 min-h-[90px] p-2 rounded-md' : 'bg-red-600 min-h-[90px] p-2 rounded-md'}`
+      setcount(count+1);
+      setCount(count+1);
+      if(!value)
+          {
+            toast.error('game is over! and you lose money!', {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark"
+              });
+              setbet(false);
+              setTimeout(() => {
+                location.reload()
+              }, 2000);
+          }
+    }
 }   
   return (
    <>
    <div className="grid grid-cols-5 gap-2 justify-center">
     {
     grid.map((value, index) => {
-              return <div key={index} onClick={(e)=>{changecolor(e,value)}} className="bg-gray-600 min-h-[90px] p-2 rounded-md">{value}
+              return <div key={index} onClick={(e)=>{changecolor(e,value,bet)}} className="bg-gray-600 min-h-[90px] p-2 rounded-md">{value}
             
     </div>
             })
     }     
   </div>
-  <div className="bg-gray-800 p-4 rounded-lg w-72">
-      <div className="flex justify-between mb-4">
-        <h2 className="text-gray-400 text-xl">
-        <div className="font-bold text-lg">
-            Your balance
-        </div>
-        <div className="font-semibold ml-4 text-lg">
-            Rs {count/2}X
-        </div>
-       </h2>
-      </div>
-      </div>
+  <ToastContainer
+position="top-center"
+autoClose={1000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="dark"/>
    </>
   );
 }

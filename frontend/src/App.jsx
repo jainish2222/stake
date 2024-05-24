@@ -3,6 +3,7 @@ import { Signin } from './pages/Signin ';
 import { Signup } from './pages/Signup ';
 import { SendMoney } from './pages/SendMoney ';
 import { Dashboard } from './pages/Dashboard';
+// import { BalProvider } from './hooks/BalContext'
 function App() {
   return (
     <>

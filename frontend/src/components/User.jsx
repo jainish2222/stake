@@ -5,12 +5,12 @@ export function User({userdata}) {
     const navigate = useNavigate();
     return <div className="flex justify-between">
         <div className="flex">
-            <div className="rounded-full h-12 w-12 bg-slate-200 flex justify-center mt-1 mr-2">
+            <div className="rounded-full h-12 w-12  bg-slate-200 flex justify-center mt-2 mr-2">
                 <div className="flex flex-col justify-center h-full text-xl">
                     {userdata.firstName[0]}
                 </div>
             </div>
-            <div className="flex flex-col justify-center h-ful">
+            <div className="flex flex-col text-slate-100 justify-center h-ful">
                 <div>
                     {userdata.firstName} {userdata.lastName}
                 </div>

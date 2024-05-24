@@ -24,7 +24,6 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minLength: 6
     },
     firstName: {
         type: String,
@@ -50,11 +49,24 @@ const accountSchema = new mongoose.Schema({
         required: true
     }
 });
+// const bitSchema = new mongoose.Schema({
+//     userId: {
+//         type: mongoose.Schema.Types.ObjectId, // Reference to User model
+//         ref: 'User',
+//         required: true
+//     },
+//     bit: {
+//         type: Number,
+//         required: true
+//     }
+// });
 
 const User = mongoose.model('Userpaytm', userSchema);
 const Account = mongoose.model('Account', accountSchema);
+// const bit = mongoose.model('bit', bitSchema);
 module.exports = {
 	User,
     Account
+    // bit
 };
 

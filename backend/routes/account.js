@@ -2,6 +2,7 @@
 const express = require('express');
 const { authMiddleware } = require('../middleware');
 const { Account } = require('../db');
+const { bit } = require('../db');
 const { default: mongoose } = require('mongoose');
 const router = express.Router();
 
@@ -20,6 +21,21 @@ router.get("/balance", authMiddleware, async (req, res) => {
 });
 
 
+router.post('/balupdate', authMiddleware, async (req, res) => {
+    const betAmount = req.body.betAmount;
+
+    try {
+        const updateResult = await Account.updateOne(
+            { userId: req.userId },
+            { $inc: { balance: betAmount } }
+        );
+
+        res.status(200).json({ message: 'Balance updated successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error', error });
+    }
+});
+
 
 
 //it is bad solution because it cant solve of : -- 
@@ -28,6 +44,7 @@ router.get("/balance", authMiddleware, async (req, res) => {
 // // that is solve insuffient balance problem
 
 // the below code fragment can be found in:
+
 router.post("/transfer", authMiddleware, async (req, res) => {
     const { amount, to } = req.body;
 
