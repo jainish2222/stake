@@ -33,7 +33,7 @@ export const Signup = () => {
         <div className="pt-4">
           <Button onClick={async () => {
             
-           const response =await axios.post("https://stake-lo8m.onrender.com/api/v1/user/signup", {
+           const response =await axios.post("https://stake-1.onrender.com/api/v1/user/signup", {
               username,
               firstName,
               lastName,
@@ -41,6 +41,9 @@ export const Signup = () => {
             });
             localStorage.setItem("token", response.data.token)
             navigate("/dashboard")
+           setTimeout(() => {
+            location.reload();
+           }, 500);
           }} label={"Sign up"} />
           
         </div>

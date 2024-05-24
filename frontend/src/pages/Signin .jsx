@@ -14,12 +14,15 @@ export const Signin = () => {
 
   const handleSignIn = async () => {
     try {
-      const response = await axios.post("https://stake-lo8m.onrender.com/api/v1/user/signin", {
+      const response = await axios.post("https://stake-1.onrender.com/api/v1/user/signin", {
         username,
         password
       });
       localStorage.setItem("token", response.data.token);
       navigate("/dashboard");
+      setTimeout(() => {
+        location.reload();
+       }, 500);
     } catch (error) {
       // Handle sign-in error, e.g., display error message
       console.error("Sign-in error:", error);

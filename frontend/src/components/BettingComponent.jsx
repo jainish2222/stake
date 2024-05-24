@@ -15,7 +15,7 @@ async function subbal(){
       alert("Insufficient Balance")
     }
     else{
-      const res = await axios.post("http://localhost:3000/api/v1/account/balupdate",
+      const res = await axios.post("https://stake-1.onrender.com/api/v1/account/balupdate",
       {
         betAmount:-betAmount
       },
@@ -35,7 +35,7 @@ async function addbal(){
       alert("Insufficient Balance")
     }
     else{
-      const res = await axios.post("http://localhost:3000/api/v1/account/balupdate",
+      const res = await axios.post("https://stake-1.onrender.com/api/v1/account/balupdate",
       {
         betAmount:profit
       },

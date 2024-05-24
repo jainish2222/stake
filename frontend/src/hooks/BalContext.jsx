@@ -12,7 +12,7 @@ const BalProvider = ({children})=>{
     useEffect(() => {
         const fetchBalance = async () => {
           try {
-            const response = await axios.get("https://stake-lo8m.onrender.com/api/v1/account/balance", {
+            const response = await axios.get("https://stake-1.onrender.com/api/v1/account/balance", {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
               }
