@@ -24,7 +24,7 @@ const BalProvider = ({children})=>{
         };
     
         fetchBalance();
-      }, []);
+      }, [setBal]);
       return (
         <BalContext.Provider value={{ bal, setBal,Count,setCount,bet,setbet}}>
           {children}

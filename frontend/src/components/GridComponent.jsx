@@ -42,9 +42,6 @@ function changecolor(e,value,bet){
               theme: "dark"
               });
               setbet(false);
-              setTimeout(() => {
-                location.reload()
-              }, 2000);
           }
     }
 }   
