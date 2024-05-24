@@ -20,6 +20,9 @@ export const Signin = () => {
       });
       localStorage.setItem("token", response.data.token);
       navigate("/dashboard");
+      setTimeout(() => {
+        location.reload();
+       }, 500);
     } catch (error) {
       // Handle sign-in error, e.g., display error message
       console.error("Sign-in error:", error);

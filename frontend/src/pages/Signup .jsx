@@ -41,6 +41,9 @@ export const Signup = () => {
             });
             localStorage.setItem("token", response.data.token)
             navigate("/dashboard")
+           setTimeout(() => {
+            location.reload();
+           }, 500);
           }} label={"Sign up"} />
           
         </div>
